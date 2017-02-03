@@ -3,7 +3,7 @@ defmodule Issues.Mixfile do
 
   def project do
     [app: :issues,
-     version: "0.1.0",
+     version: "0.0.1",
      elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -15,7 +15,7 @@ defmodule Issues.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     # Specify extra applications you'll use from Erlang/Elixir
-    [extra_applications: [:logger]]
+    [extra_applications: [ :logger, :httpoison]]
   end
 
   # Dependencies can be Hex packages:
@@ -28,6 +28,8 @@ defmodule Issues.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      { :httpoison, "~> 0.11"}
+    ]
   end
 end

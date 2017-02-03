@@ -8,15 +8,14 @@ defmodule Issues.GithubIssues do
   end
 
   def issues_url(user, project) do
-    "http://api.github.com/repos/#{user}/#{project}/issues"
+    "https://api.github.com/repos/#{user}/#{project}/issues"
   end
 
   def handle_response({ :ok, %{status_code: 200, body: body} }) do
-    { :ok, body}
+    { :ok, Poison.Parser.parse!(body)}
   end
 
   def handle_response({ _, %{status_code: status_code, body: body} }) do
-    IO.inspect status_code
-    { :error, body}
+    { :error, Poison.Parser.parse!(body)}
   end
 end
